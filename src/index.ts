@@ -1,5 +1,7 @@
 import express from 'express'
 import itensRouter from './routers/itens-router'
+import lojasRouter from './routers/lojas-router'
+import produtosRouter from './routers/produtos-router'
 // Porta do servidor
 const PORT = process.env.PORT || 4000
 // Host do servidor
@@ -15,6 +17,10 @@ app.get('/', (req, res) => {
 })
 // Rotas
 app.use('/api', itensRouter)
+app.use('/api', lojasRouter)
+app.use('/api', produtosRouter)
+
+
 // Resposta padrão para quaisquer outras requisições:
 app.use((req, res) => {
     res.status(404)

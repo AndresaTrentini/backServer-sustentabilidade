@@ -1,6 +1,6 @@
-type Item = {
+type item = {
     id?: number
     nome: string
     descricao: string
 }
-export default Item
+export default item
