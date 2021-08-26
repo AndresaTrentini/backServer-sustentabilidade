@@ -15,7 +15,7 @@ const lojasRepository = {
 	},
 
     atualizar: (id: number, lojas: Loja, callback: (notFound: boolean) => void) => {
-		const sql = 'UPDATE lojas SET nome = ?, WHERE id = ?'
+		const sql = 'UPDATE lojas SET nome = ? WHERE id = ?'
 		const params = [lojas.nome, id]
 		database.run(sql, params, function(_err) {
 			callback(this.changes === 0)
