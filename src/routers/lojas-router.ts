@@ -1,12 +1,14 @@
 import express from "express"
 import Loja from "../models/loja"
 import lojasRepository from "../repositories/lojas-repository"
+import produtosRepository from "../repositories/produtos-repository"
 
 const lojasRouter = express.Router()
 
 lojasRouter.get('/lojas', (req, res) => {
 	lojasRepository.lerTodas((lojas) => res.json(lojas))
 })
+
 
 lojasRouter.get('/lojas/:id', (req, res) => {
 	const id: number = +req.params.id
@@ -16,6 +18,13 @@ lojasRouter.get('/lojas/:id', (req, res) => {
 		} else {
 			res.status(404).send()
 		}
+	})
+})
+
+lojasRouter.get('/lojas/:id/produtos', (req, res) => {
+	const id: number = +req.params.id
+	produtosRepository.lerTodosDaLoja(id, (produtos) =>{
+		res.json(produtos)
 	})
 })
 

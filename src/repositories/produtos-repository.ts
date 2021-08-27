@@ -8,6 +8,13 @@ const produtosRepository = {
 		database.all(sql, params, (_err, rows) => callback(rows))
     },
 
+	lerTodosDaLoja: (lojaId: number, callback: (produtos: Produto[]) => void) => {
+        const sql = 'SELECT * FROM produtos WHERE lojaId = ?'
+		const params: any[] = [lojaId]
+		database.all(sql, params, (_err, rows) => callback(rows))
+    },
+
+
     ler: (id: number, callback: (produtos?: Produto) => void) => {
 		const sql = 'SELECT * FROM produtos WHERE id = ?'
 		const params = [id]
@@ -30,9 +37,9 @@ const produtosRepository = {
 		})
 	},
 
-    criar: (produtos: Produto, callback: (id?: number) => void) => {
-		const sql = 'INSERT INTO produtos (nome) VALUES (?)'
-		const params = [produtos.nome]
+    criar: (produto: Produto, callback: (id?: number) => void) => {
+		const sql = 'INSERT INTO produtos (nome, preco, lojaId) VALUES (?, ?, ?)'
+		const params = [produto.nome, produto.preco, produto.lojaId]
 		database.run(sql, params, function(_err) {
 			callback(this?.lastID)
 		})

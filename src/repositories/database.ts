@@ -1,4 +1,5 @@
 import sqlite3 from 'sqlite3'
+import { convertCompilerOptionsFromJson } from 'typescript'
 const DBSOURCE = 'db.sqlite'
 const SQL_ITENS_CREATE = `
     CREATE TABLE itens (
@@ -18,7 +19,7 @@ const SQL_ITENS_CREATE = `
         nome TEXT NOT NULL,
         preco REAL NOT NULL,
         lojaId INTEGER NOT NULL,
-        FOREING KEY(lojaId) REFERENCES loja(id)
+        FOREIGN KEY(lojaId) REFERENCES loja(id)
         
     )`
 
